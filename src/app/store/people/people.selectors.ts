@@ -1,19 +1,20 @@
 
 import { PeopleState } from './people.reducers';
 import { IPerson } from './people.model';
-import { createSelector, createReducer } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 
 
 
 const isGender = (person: IPerson, gender: string) => person.gender === gender;
-const selectName = (person: IPerson) => person.name;
+const selectNames = (people: IPerson[]) => people.map( p => p.name);
+const selectMen = (people: IPerson[]) => people.filter( p => p.gender === 'M');
+const selectAllPeople = (state: PeopleState) => state.people;
 
-export const selectAllPeople = (state: PeopleState) => state.people;
-export const selectMen = (state: PeopleState) => state.people.filter( p => isGender(p, 'M'));
 
 
-export const selectMenNames = createReducer(
-    selectMen,
+export const selectMenNames = createSelector(
+    selectAllPeople,
+    selectNames
 );
 
 

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() { 
     //this.people$ = this.store.select(p => {console.log('p:', JSON.stringify(p.peopleState.people)); return p.peopleState.people });
-    this.people$ = this.store.select('people');
+    // this.people$ = this.store.select('people');
   }
 
   addPeople(): void { 
