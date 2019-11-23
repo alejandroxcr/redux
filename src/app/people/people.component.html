@@ -1,0 +1,9 @@
+<section class="people">
+    <h1>Characters</h1>
+    <button class="btn btn-link" (click)="add()">Add Default</button>
+    <ul>
+        <li *ngFor="let person of (people$ | async)">
+            {{ person.name }}
+        </li>
+    </ul>
+</section>

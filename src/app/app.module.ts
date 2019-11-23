@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { reducer } from './store/people';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { PeopleModule } from './people/people.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot( { peopleState: reducer }),
+    PeopleModule,
+    StoreModule.forRoot( { } ),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

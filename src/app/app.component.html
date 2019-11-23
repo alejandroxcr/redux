@@ -1,6 +1,3 @@
-<section class="people" *ngIf="people$ | async" >  
-  <h1>Listo of:</h1>
-  <button (click)="addPeople()">ADD PERSON!</button>
-
-  <div *ngFor="let person of (people$ | async)">{{ person.name }}</div> 
+<section class="redux" >  
+  <app-people></app-people>
 </section>
