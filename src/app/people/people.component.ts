@@ -13,7 +13,7 @@ export class PeopleComponent implements OnInit {
 
   people$: Observable<IPerson[]>;
 
-  constructor(private store: Store<{stateKey: PeopleState}>) {
+  constructor(private store: Store<{peopleState: PeopleState}>) {
   }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class PeopleComponent implements OnInit {
   private init(): void { 
     try {
 
-      this.people$ = this.store.pipe(select(s => s.stateKey.people));
+      this.people$ = this.store.pipe(select(s => s.peopleState.people));
 
     } catch (err) {
       console.error('PEOPE-COMPONENT', `-e ${err}`);

@@ -11,7 +11,7 @@ import { PeopleComponent } from './people.component';
   declarations: [ PeopleComponent ],
   imports: [
     CommonModule,
-    StoreModule.forFeature('stateKey', reducer)
+    StoreModule.forFeature('peopleState', reducer)
   ],
   exports: [ PeopleComponent ]
 })
