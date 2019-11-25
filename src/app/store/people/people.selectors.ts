@@ -14,7 +14,7 @@ const selectAllPeople = (state: PeopleState) => state.people;
 
 export const selectMenNames = createSelector(
     selectAllPeople,
-    selectNames
+    selectMen
 );
 
 
