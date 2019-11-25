@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select  } from '@ngrx/store';
 
-import { PeopleState, IPerson, addPeople } from '../store/people';
+import { PeopleState, IPerson, addPeople, loadPeople } from '../store/people';
 import { Observable } from 'rxjs';
+import { selectMenNames } from '../store/people/people.selectors';
 
 @Component({
   selector: 'app-people',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 export class PeopleComponent implements OnInit {
 
   people$: Observable<IPerson[]>;
+  peopleNames$: Observable<string[]>;
 
   constructor(private store: Store<{peopleState: PeopleState}>) {
   }
@@ -26,6 +28,7 @@ export class PeopleComponent implements OnInit {
   private init(): void { 
     try {
 
+      this.store.dispatch(loadPeople());
       this.people$ = this.store.pipe(select(s => s.peopleState.people));
 
     } catch (err) {
@@ -48,5 +51,6 @@ export class PeopleComponent implements OnInit {
     this.store.dispatch(addPeople({ people: [person]} ));
 
   }
+
 
 }

@@ -4,6 +4,8 @@ import { StoreModule } from '@ngrx/store';
 
 import { reducer } from '../store/people';
 import { PeopleComponent } from './people.component';
+import { PeopleEffects } from '../store/people/people.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -11,7 +13,8 @@ import { PeopleComponent } from './people.component';
   declarations: [ PeopleComponent ],
   imports: [
     CommonModule,
-    StoreModule.forFeature('peopleState', reducer)
+    StoreModule.forFeature('peopleState', reducer),
+    EffectsModule.forFeature([PeopleEffects])
   ],
   exports: [ PeopleComponent ]
 })

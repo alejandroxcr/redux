@@ -5,16 +5,25 @@ import { createSelector } from '@ngrx/store';
 
 
 
-const isGender = (person: IPerson, gender: string) => person.gender === gender;
-const selectNames = (people: IPerson[]) => people.map( p => p.name);
-const selectMen = (people: IPerson[]) => people.filter( p => p.gender === 'M');
 const selectAllPeople = (state: PeopleState) => state.people;
+const selectMen = (people: IPerson[]) => people.filter( p => p.gender === 'male');
+const selectNames = (people: IPerson[]) => people.map(p => p.name);
+const genderNames = (state: PeopleState) => selectNames(selectMen(selectAllPeople(state)));
 
 
-
-export const selectMenNames = createSelector(
-    selectAllPeople,
-    selectMen
+/**
+ * Select men names
+ */
+export const selectMenNames =  createSelector( 
+    genderNames,
+    (names: string[]) => {
+        if (names) {
+            return names
+        } else {
+            return ['empty'];
+        }
+    }
 );
+
 
 
