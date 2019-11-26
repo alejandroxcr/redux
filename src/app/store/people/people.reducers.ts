@@ -9,20 +9,23 @@ import { IPerson } from './people.model';
  */
 export interface PeopleState { 
     people: IPerson [];
+    loading: boolean
 }
 
 const initialState: PeopleState = {
-    people: []
+    people: [],
+    loading: false
+ 
 }
 
-const addPerson = (data: any) =>  <IPerson>{ name: data.name, age: '', gender: '', id: ''};
+const addPerson = ({height, name, gender, mass}) =>  <IPerson>{ name, height, gender, id: '', mass};
 
 const peopleReducer = createReducer(
     initialState,
     on(PeopleActions.addPeople, (state, { people }) => ({...state,  people: state.people.concat(people)} )),
     on(PeopleActions.removePerson, (state, { person }) => ({...state, people: state.people.filter( p => p.id !== person.id )})),
-    on(PeopleActions.loadPeople),
-    on(PeopleActions.peopleSucceedLoad, (state, {data}) => ({...state, people: data.results.map( (r: any) => addPerson(r)) }))
+    on(PeopleActions.loadPeople, state => ({...state, loading: true }) ),
+    on(PeopleActions.peopleSucceedLoad, (state, { data }) => ({...state, loading:false, people: data.results.map( (r: any) => addPerson(r)) }))
 );
 
 export function reducer( state: PeopleState | undefined, action: Action) {

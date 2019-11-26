@@ -1,6 +1,7 @@
 export interface IPerson {
     id: string;
     name: string;
-    age: string;
+    height: string;
+    mass: string;
     gender: string;
 }

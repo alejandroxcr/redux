@@ -3,7 +3,8 @@ import { Store, select  } from '@ngrx/store';
 
 import { PeopleState, IPerson, addPeople, loadPeople } from '../store/people';
 import { Observable } from 'rxjs';
-import { selectMenNames } from '../store/people/people.selectors';
+import { menAvg } from '../store/people/people.selectors';
+
 
 @Component({
   selector: 'app-people',
@@ -13,7 +14,10 @@ import { selectMenNames } from '../store/people/people.selectors';
 export class PeopleComponent implements OnInit {
 
   people$: Observable<IPerson[]>;
-  peopleNames$: Observable<string[]>;
+  heightMaleAvg$: Observable<number>;
+
+  isLoading$: Observable<boolean>;
+
 
   constructor(private store: Store<{peopleState: PeopleState}>) {
   }
@@ -28,29 +32,15 @@ export class PeopleComponent implements OnInit {
   private init(): void { 
     try {
 
-      this.store.dispatch(loadPeople());
+      this.store.dispatch(loadPeople()); // Load remotely
+
       this.people$ = this.store.pipe(select(s => s.peopleState.people));
+      this.heightMaleAvg$ = this.store.select(s => menAvg(s.peopleState));
+      this.isLoading$ = this.store.select( s => s.peopleState.loading);
 
     } catch (err) {
       console.error('PEOPE-COMPONENT', `-e ${err}`);
     }
   }
-
-  /**
-   * Add person
-   */
-  add(): void {
-
-    const person: IPerson = {
-      age: '1',
-      gender: 'M',
-      id: '01',
-      name: 'Default'
-    };
-
-    this.store.dispatch(addPeople({ people: [person]} ));
-
-  }
-
 
 }

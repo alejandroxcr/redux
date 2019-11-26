@@ -1,9 +1,34 @@
 <section class="people">
-    <h1>Characters</h1>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Characters</h1>
+            </div>
+            <div class="col-12"> 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mass</th>
+                            <th>Height</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let person of (people$ | async)">
+                            <td> {{ person.name }}</td>
+                            <td> {{ person.mass}}</td>
+                            <td> {{ person.height }}</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td></td>
+                            <td>{{heightMaleAvg$ | async }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li *ngFor="let person of (people$ | async)">
-            {{ person.name }}
-        </li>
-    </ul>
 </section>
