@@ -8,11 +8,13 @@ import { IPerson } from "./people.model";
  */
 export interface PeopleState {
   people: IPerson[];
+  selectedPerson: IPerson;
   loading: boolean;
 }
 
 const initialState: PeopleState = {
   people: [],
+  selectedPerson: null,
   loading: false
 };
 
@@ -35,6 +37,10 @@ const peopleReducer = createReducer(
     ...state,
     loading: false,
     people: data.results.map((r: any) => addPerson(r))
+  })),
+  on(PeopleActions.loadPerson, (state, { person }) => ({
+    ...state,
+    selectedPerson: person
   }))
 );
 

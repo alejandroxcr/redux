@@ -17,3 +17,8 @@ export const peopleSucceedLoad = createAction(
   `${actionkey} Succeed Load`,
   props<{ data: any }>()
 );
+
+export const loadPerson = createAction(
+  `${actionkey} Load Person`,
+  props<{ person: IPerson }>()
+);

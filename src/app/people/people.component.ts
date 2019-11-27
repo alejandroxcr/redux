@@ -28,6 +28,12 @@ export class PeopleComponent implements OnInit {
   }
 
   /**
+   * Edit person
+   * @param person
+   */
+  edit(person: IPerson): void {}
+
+  /**
    * Initialize class members
    */
   private init(): void {

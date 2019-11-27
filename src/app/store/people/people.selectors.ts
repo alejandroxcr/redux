@@ -16,6 +16,7 @@ const avg = (s: PeopleState) =>
 const avgMass = (s: PeopleState) =>
   sum(selectMass(men(selectPeople(s)))) / countMen(s);
 
+// Select men
 export const selectMen = createSelector(selectPeople, (people: IPerson[]) =>
   people.filter(p => p.gender === "male")
 );

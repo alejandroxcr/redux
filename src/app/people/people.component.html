@@ -20,9 +20,9 @@
                             <td> {{ person.mass}}</td>
                             <td> {{ person.height }}</td>
                             <td class="text-center">
-                                <span class="option">
+                                <span class="option" (click)="edit(person)">
                                     <i class="far fa-edit"></i>
-                                </span>|
+                                </span> | 
                                 <span class="option">
                                     <i class="far fa-window-close"></i>
                                 </span>
