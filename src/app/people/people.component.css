@@ -1,1 +1,4 @@
-section.people { padding: 5% 3%;}
+.people { padding: 5% 3%;}
+.loader { padding: 5%;}
+.option { cursor: pointer; color:#3D3D3D;}
+.option:hover { color:#000;}

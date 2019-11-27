@@ -5,28 +5,41 @@
             <div class="col-12">
                 <h1>Characters</h1>
             </div>
-            <div class="col-12"> 
+            <div class="col-12" *ngIf="!(isLoading$ | async)"> 
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Mass</th>
                             <th>Height</th>
-                        </tr>
-                    </thead>
+                            <th>Options</th>
+                        </tr>                                                                           
                     <tbody>
                         <tr *ngFor="let person of (people$ | async)">
                             <td> {{ person.name }}</td>
                             <td> {{ person.mass}}</td>
                             <td> {{ person.height }}</td>
+                            <td class="text-center">
+                                <span class="option">
+                                    <i class="far fa-edit"></i>
+                                </span>|
+                                <span class="option">
+                                    <i class="far fa-window-close"></i>
+                                </span>
+                            </td>
                         </tr>
                         <tr>
-                            <td>-</td>
-                            <td></td>
-                            <td>{{heightMaleAvg$ | async }}</td>
+                            <td>Average</td>
+                            <td> {{ massMaleAvg$ | async }}</td>
+                            <td colspan="2">{{ heightMaleAvg$ | async }}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-12" *ngIf="(isLoading$ | async)">
+                <div class="loader text-center">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                </div>
             </div>
         </div>
     </div>
