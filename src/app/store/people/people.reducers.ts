@@ -18,6 +18,12 @@ const initialState: PeopleState = {
   loading: false
 };
 
+const updatePerson = ({ name, height, mass }, person: IPerson) => {
+  person.name = name;
+  person.mass = mass;
+  person.height = height;
+};
+
 const addPerson = ({ height, name, gender, mass }) => {
   return <IPerson>{ name, height, gender, id: "", mass };
 };
@@ -41,6 +47,17 @@ const peopleReducer = createReducer(
   on(PeopleActions.loadPerson, (state, { person }) => ({
     ...state,
     selectedPerson: person
+  })),
+
+  on(PeopleActions.updatePerson, (state, { person, name }) => ({
+    ...state,
+    people: state.people.map((p: IPerson) => {
+      if (p.name === name) {
+        return updatePerson(person, p);
+      } else {
+        return p;
+      }
+    })
   }))
 );
 

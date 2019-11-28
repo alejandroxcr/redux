@@ -22,3 +22,8 @@ export const loadPerson = createAction(
   `${actionkey} Load Person`,
   props<{ person: IPerson }>()
 );
+
+export const updatePerson = createAction(
+  `${actionkey} Update Person`,
+  props<{ person: IPerson; name: string }>()
+);

@@ -3,7 +3,7 @@ import { Store } from "@ngrx/store";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 
-import { IPerson, PeopleState } from "../store/people";
+import { IPerson, PeopleState, updatePerson } from "../store/people";
 
 @Component({
   selector: "app-person-form",
@@ -23,6 +23,17 @@ export class PersonFormComponent implements OnInit {
     this.init();
   }
 
+  /**
+   * Update person
+   */
+  update(): void {
+    this.selectedPerson$.subscribe(p => this.doUpdate(p));
+  }
+
+  private doUpdate(person: IPerson): void {
+    this.store.dispatch(updatePerson({ person: person, name: person.name }));
+  }
+
   private init(): void {
     try {
       this.selectedPerson$ = this.store.select(
@@ -33,6 +44,7 @@ export class PersonFormComponent implements OnInit {
       console.error(this.TAG_ERROR, `-e ${err}`);
     }
   }
+
   /**
    * Initialize class memebers
    */

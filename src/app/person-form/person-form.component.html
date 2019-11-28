@@ -12,5 +12,5 @@
         <label>Mass</label>
         <input type="text" class="form-control" formControlName="mass" value="{{ (selectedPerson$ | async).mass }}"/>
     </div>
-    <button class="btn btn-primary btn-sm text-right">Update</button>
+    <button class="btn btn-primary btn-sm text-right" (click)="update()">Update</button>
 </form>
