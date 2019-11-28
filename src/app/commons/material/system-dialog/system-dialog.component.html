@@ -1,3 +1,14 @@
-<section class="container">
-    <h1>Modify Person</h1>
-</section>
+
+<ng-container *ngIf="data.type === DialogType.Edit then edit;"></ng-container>
+
+<ng-template #edit>
+    <section class="container">
+        <span class="icon text-center">
+            <i class="far fa-3x fa-address-card"></i> 
+        </span>
+        <h1>{{ data.title}}</h1>
+        <p *ngIf="data.message"> {{ data.message }} </p>
+        <app-person-form></app-person-form>
+    </section>
+</ng-template>
+    

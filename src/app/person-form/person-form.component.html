@@ -1,10 +1,14 @@
 <form [formGroup]="getPersonForm">
     <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name"/>
+    </div>
+    <div class="form-group">
         <label>Height</label>
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control" formControlName="height"/>
     </div>
     <div class="form-group">
         <label>Mass</label>
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control" formControlName="mass"/>
     </div>
 </form>

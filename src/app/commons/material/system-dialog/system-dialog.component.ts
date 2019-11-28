@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { SystemDialog } from "src/app/interfaces/app-interface";
+import { DialogType } from "src/app/enums/app-enums";
 
 @Component({
   selector: "app-system-dialog",
@@ -14,4 +15,8 @@ export class SystemDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  get DialogType() {
+    return DialogType;
+  } // To use enum reference from template
 }

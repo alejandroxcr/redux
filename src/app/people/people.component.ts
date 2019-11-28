@@ -8,6 +8,8 @@ import {
   menMassAvg,
   selectMen
 } from "../store/people/people.selectors";
+import { AppService } from "../services/app.service";
+import { DialogType } from "../enums/app-enums";
 
 @Component({
   selector: "app-people",
@@ -21,7 +23,10 @@ export class PeopleComponent implements OnInit {
 
   isLoading$: Observable<boolean>;
 
-  constructor(private store: Store<{ peopleState: PeopleState }>) {}
+  constructor(
+    private store: Store<{ peopleState: PeopleState }>,
+    private appSvc: AppService
+  ) {}
 
   ngOnInit() {
     this.init();
@@ -31,7 +36,14 @@ export class PeopleComponent implements OnInit {
    * Edit person
    * @param person
    */
-  edit(person: IPerson): void {}
+  edit(person: IPerson): void {
+    this.appSvc.openDialog({
+      message: "",
+      title: "Modify Person",
+      type: DialogType.Edit,
+      options: { height: 500, width: 400 }
+    });
+  }
 
   /**
    * Initialize class members

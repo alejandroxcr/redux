@@ -2,5 +2,6 @@ export enum DialogType {
   Standard,
   Info,
   Warning,
-  Error
+  Error,
+  Edit
 }
