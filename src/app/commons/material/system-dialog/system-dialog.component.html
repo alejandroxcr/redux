@@ -3,10 +3,10 @@
 
 <ng-template #edit>
     <section class="container">
-        <span class="icon text-center">
+        <div class="icon text-center mt-5 mb-3">
             <i class="far fa-3x fa-address-card"></i> 
-        </span>
-        <h1>{{ data.title}}</h1>
+        </div>
+        <h1 class="text-center mb-5">{{ data.title}}</h1>
         <p *ngIf="data.message"> {{ data.message }} </p>
         <app-person-form></app-person-form>
     </section>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
-import { IPerson } from "../store/people";
+
+import { IPerson, PeopleState } from "../store/people";
 
 @Component({
   selector: "app-person-form",
@@ -15,7 +17,7 @@ export class PersonFormComponent implements OnInit {
 
   selectedPerson$: Observable<IPerson>;
 
-  constructor() {}
+  constructor(private store: Store<{ peopleState: PeopleState }>) {}
 
   ngOnInit() {
     this.init();
@@ -23,6 +25,9 @@ export class PersonFormComponent implements OnInit {
 
   private init(): void {
     try {
+      this.selectedPerson$ = this.store.select(
+        s => s.peopleState.selectedPerson
+      );
       this.initForm();
     } catch (err) {
       console.error(this.TAG_ERROR, `-e ${err}`);

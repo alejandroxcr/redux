@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 
-import { PeopleState, IPerson, addPeople, loadPeople } from "../store/people";
+import {
+  PeopleState,
+  IPerson,
+  addPeople,
+  loadPeople,
+  loadPerson
+} from "../store/people";
 import { Observable } from "rxjs";
 import {
   menHeightsAvg,
@@ -37,11 +43,12 @@ export class PeopleComponent implements OnInit {
    * @param person
    */
   edit(person: IPerson): void {
+    this.store.dispatch(loadPerson({ person: person })); // Dispatch action to load person
     this.appSvc.openDialog({
       message: "",
       title: "Modify Person",
       type: DialogType.Edit,
-      options: { height: 500, width: 400 }
+      options: { height: 600, width: 400 }
     });
   }
 
