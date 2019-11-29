@@ -2,6 +2,7 @@ import { createReducer, on, State, Action } from "@ngrx/store";
 
 import * as PeopleActions from "./people.actions";
 import { IPerson } from "./people.model";
+import { Guid } from "guid-typescript";
 
 /**
  * State structure declared in reducer
@@ -18,14 +19,9 @@ const initialState: PeopleState = {
   loading: false
 };
 
-const updatePerson = ({ name, height, mass }, person: IPerson) => {
-  person.name = name;
-  person.mass = mass;
-  person.height = height;
-};
 
 const addPerson = ({ height, name, gender, mass }) => {
-  return <IPerson>{ name, height, gender, id: "", mass };
+  return { name, height, gender, id: Guid.create(), mass } as IPerson;
 };
 
 const peopleReducer = createReducer(
@@ -48,12 +44,11 @@ const peopleReducer = createReducer(
     ...state,
     selectedPerson: person
   })),
-
-  on(PeopleActions.updatePerson, (state, { person, name }) => ({
+  on(PeopleActions.updatePerson, (state, { person }) => ({
     ...state,
-    people: state.people.map((p: IPerson) => {
-      if (p.name === name) {
-        return updatePerson(person, p);
+    people: state.people.map( (p: IPerson) => {
+      if (p.id === person.id) {
+        return person;
       } else {
         return p;
       }

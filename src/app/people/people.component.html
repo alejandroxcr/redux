@@ -16,6 +16,7 @@
                         </tr>                                                                           
                     <tbody>
                         <tr *ngFor="let person of (people$ | async)">
+                            <td class="d-none"> {{ person.id }}</td>
                             <td> {{ person.name }}</td>
                             <td> {{ person.mass}}</td>
                             <td> {{ person.height }}</td>

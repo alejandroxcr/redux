@@ -1,5 +1,7 @@
+import { Guid } from 'guid-typescript';
+
 export interface IPerson {
-  id: string;
+  id: Guid;
   name: string;
   height: string;
   mass: string;
