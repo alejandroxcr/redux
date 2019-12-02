@@ -9,7 +9,7 @@ const selectMass = (people: IPerson[]) => people.map(p => +p.mass);
 const sum = (people: number[]) =>
   people.reduce((prev: number, current: number) => (prev += current));
 
-const round = (x: number) => (x * 100) / 100;
+const round = (x: number) => +x.toFixed(2);
 
 const countMen = (s: PeopleState) => men(selectPeople(s)).length;
 const avg = (s: PeopleState) =>
