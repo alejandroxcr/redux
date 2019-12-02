@@ -9,12 +9,14 @@ const selectMass = (people: IPerson[]) => people.map(p => +p.mass);
 const sum = (people: number[]) =>
   people.reduce((prev: number, current: number) => (prev += current));
 
+const round = (x: number) => (x * 100) / 100;
+
 const countMen = (s: PeopleState) => men(selectPeople(s)).length;
 const avg = (s: PeopleState) =>
-  sum(selectHeights(men(selectPeople(s)))) / countMen(s);
+  round(sum(selectHeights(men(selectPeople(s)))) / countMen(s));
 
 const avgMass = (s: PeopleState) =>
-  sum(selectMass(men(selectPeople(s)))) / countMen(s);
+  round(sum(selectMass(men(selectPeople(s)))) / countMen(s));
 
 // Select men
 export const selectMen = createSelector(selectPeople, (people: IPerson[]) =>

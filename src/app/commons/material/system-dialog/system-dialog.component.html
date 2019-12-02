@@ -1,5 +1,6 @@
 
 <ng-container *ngIf="data.type === DialogType.Edit then edit;"></ng-container>
+<ng-container *ngIf="data.type === DialogType.Warning then warning;"></ng-container>
 
 <ng-template #edit>
     <section class="container">
@@ -12,3 +13,16 @@
     </section>
 </ng-template>
     
+<ng-template #warning>
+    <section class="container">
+        <div class="icon text-center mt-5 mb-3">
+            <i class="fas fa-3x fa-user-times"></i>
+        </div>
+        <h1 class="text-center mb-5">{{ data.title}}</h1>
+        <p *ngIf="data.message"> {{ data.message }} </p>
+        <div class="mt-5 text-center">
+            <button mat-button class="btn btn-link" (click)="close()">Cancel</button>
+            <button mat-button cdkFocusInitial class="btn btn-error" (click)="accept()">Yes, sure</button>
+        </div>
+    </section>
+</ng-template>

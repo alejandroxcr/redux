@@ -16,6 +16,20 @@ export class SystemDialogComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * Close dialog
+   */
+  close(): void {
+    this.dialogRef.close(false);
+  }
+
+  /**
+   * Accept
+   */
+  accept(): void {
+    this.dialogRef.close(true);
+  }
+
   get DialogType() {
     return DialogType;
   } // To use enum reference from template

@@ -19,7 +19,6 @@ const initialState: PeopleState = {
   loading: false
 };
 
-
 const addPerson = ({ height, name, gender, mass }) => {
   return { name, height, gender, id: Guid.create(), mass } as IPerson;
 };
@@ -46,13 +45,17 @@ const peopleReducer = createReducer(
   })),
   on(PeopleActions.updatePerson, (state, { person }) => ({
     ...state,
-    people: state.people.map( (p: IPerson) => {
+    people: state.people.map((p: IPerson) => {
       if (p.id === person.id) {
         return person;
       } else {
         return p;
       }
     })
+  })),
+  on(PeopleActions.deletePerson, (state, { person }) => ({
+    ...state,
+    people: state.people.filter((p: IPerson) => p.id !== person.id)
   }))
 );
 

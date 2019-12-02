@@ -25,5 +25,10 @@ export const loadPerson = createAction(
 
 export const updatePerson = createAction(
   `${actionkey} Update Person`,
-  props<{ person: IPerson}>()
+  props<{ person: IPerson }>()
+);
+
+export const deletePerson = createAction(
+  `${actionkey} Delete Person`,
+  props<{ person: IPerson }>()
 );
