@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Observable } from "rxjs";
 
-import { IPerson, PeopleState, updatePerson } from '../store/people';
+import { IPerson, PeopleState, updatePerson } from "../store/people";
 
 @Component({
-  selector: 'app-person-form',
-  templateUrl: './person-form.component.html',
-  styleUrls: ['./person-form.component.css']
+  selector: "app-person-form",
+  templateUrl: "./person-form.component.html",
+  styleUrls: ["./person-form.component.css"]
 })
 export class PersonFormComponent implements OnInit {
-  private TAG_LOG = 'PersonFormComponent';
-  private TAG_ERROR = 'PersonFormComponent-ERROR';
+  private TAG_LOG = "PersonFormComponent";
+  private TAG_ERROR = "PersonFormComponent-ERROR";
   private personForm: FormGroup;
 
   selectedPerson$: Observable<IPerson>;
@@ -30,13 +30,17 @@ export class PersonFormComponent implements OnInit {
     this.selectedPerson$.subscribe(p => this.doUpdate(p));
   }
 
-  private doUpdate( {...person}: IPerson): void {
-
+  private doUpdate({ ...person }: IPerson): void {
     const controls = this.getPersonForm.controls;
 
-    person.name = person.name !== controls.name.value ? controls.name.value : person.name;
-    person.height = person.height !== controls.height.value ? controls.height.value : person.height;
-    person.mass = person.mass !== controls.mass.value ? controls.mass.value : person.mass;
+    person.name =
+      person.name !== controls.name.value ? controls.name.value : person.name;
+    person.height =
+      person.height !== controls.height.value
+        ? controls.height.value
+        : person.height;
+    person.mass =
+      person.mass !== controls.mass.value ? controls.mass.value : person.mass;
 
     this.store.dispatch(updatePerson({ person }));
   }
@@ -58,9 +62,9 @@ export class PersonFormComponent implements OnInit {
   private initForm(): void {
     try {
       this.personForm = new FormGroup({
-        name: new FormControl('', Validators.required),
-        mass: new FormControl('', Validators.required),
-        height: new FormControl('', Validators.required)
+        name: new FormControl("", Validators.required),
+        mass: new FormControl("", Validators.required),
+        height: new FormControl("", Validators.required)
       });
     } catch (err) {
       console.log(this.TAG_ERROR, `${err}`);
