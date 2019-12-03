@@ -32,3 +32,8 @@ export const deletePerson = createAction(
   `${actionkey} Delete Person`,
   props<{ person: IPerson }>()
 );
+
+export const loadShips = createAction(
+  `${actionkey} Load Ships`,
+  props<{ id: number }>()
+);

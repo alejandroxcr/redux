@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -11,6 +11,8 @@ import { IPerson, PeopleState, updatePerson } from "../store/people";
   styleUrls: ["./person-form.component.css"]
 })
 export class PersonFormComponent implements OnInit {
+  @Output() onClose = new EventEmitter<boolean>();
+
   private TAG_LOG = "PersonFormComponent";
   private TAG_ERROR = "PersonFormComponent-ERROR";
   private personForm: FormGroup;
@@ -28,6 +30,13 @@ export class PersonFormComponent implements OnInit {
    */
   update(): void {
     this.selectedPerson$.subscribe(p => this.doUpdate(p));
+  }
+
+  /**
+   * Close form
+   */
+  close(): void {
+    this.onClose.emit(true);
   }
 
   private doUpdate({ ...person }: IPerson): void {

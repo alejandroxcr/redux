@@ -6,7 +6,8 @@ import {
   IPerson,
   deletePerson,
   loadPeople,
-  loadPerson
+  loadPerson,
+  loadShips
 } from "../store/people";
 import { Observable } from "rxjs";
 import {
@@ -47,12 +48,17 @@ export class PeopleComponent implements OnInit {
    */
   edit(person: IPerson): void {
     this.store.dispatch(loadPerson({ person })); // Dispatch action to load person
-    this.appSvc.openDialog({
-      message: "",
-      title: "Modify Person",
-      type: DialogType.Edit,
-      options: { height: 600, width: 400 }
-    });
+    this.appSvc
+      .openDialog({
+        message: "",
+        title: "Modify Person",
+        type: DialogType.Edit,
+        options: { height: 600, width: 400 }
+      })
+      .subscribe((r: boolean) => {
+        if (r) {
+        }
+      });
   }
 
   /**
@@ -74,6 +80,11 @@ export class PeopleComponent implements OnInit {
       });
   }
 
+  loadSpaceships(person: IPerson): void {
+    console.log("p:", `${JSON.stringify(person)}`);
+    //this.store.dispatch(loadShips({  }));
+  }
+
   /**
    * Initialize class members
    */
@@ -88,7 +99,7 @@ export class PeopleComponent implements OnInit {
 
       this.massMaleAvg$ = this.store.select(s => menMassAvg(s.peopleState));
     } catch (err) {
-      console.error("PEOPE-COMPONENT", `-e ${err}`);
+      console.error(this.TAG_ERROR, `-e ${err}`);
     }
   }
 }

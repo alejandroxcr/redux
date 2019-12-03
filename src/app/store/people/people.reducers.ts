@@ -19,8 +19,15 @@ const initialState: PeopleState = {
   loading: false
 };
 
-const addPerson = ({ height, name, gender, mass }) => {
-  return { name, height, gender, id: Guid.create(), mass } as IPerson;
+const addPerson = ({ height, name, gender, mass, starships }) => {
+  return {
+    name,
+    height,
+    gender,
+    id: Guid.create(),
+    mass,
+    starships
+  } as IPerson;
 };
 
 const peopleReducer = createReducer(

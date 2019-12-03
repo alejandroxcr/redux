@@ -21,12 +21,15 @@
                             <td> {{ person.mass}}</td>
                             <td> {{ person.height }}</td>
                             <td class="text-center">
-                                <span class="option" (click)="edit(person)">
+                                <span class="option" (click)="edit(person)" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="far fa-edit"></i>
                                 </span> | 
-                                <span class="option" (click)="delete(person)">
+                                <span class="option" data-toggle="tooltip" data-placement="top" title="Spaceships" (click)="loadSpaceships(person)">
+                                    <i class="fas fa-rocket"></i>
+                                </span> |
+                                <span class="option" (click)="delete(person)" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="far fa-window-close"></i>
-                                </span>
+                                </span>  
                             </td>
                         </tr>
                         <tr>

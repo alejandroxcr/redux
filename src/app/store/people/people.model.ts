@@ -1,4 +1,4 @@
-import { Guid } from 'guid-typescript';
+import { Guid } from "guid-typescript";
 
 export interface IPerson {
   id: Guid;
@@ -6,4 +6,12 @@ export interface IPerson {
   height: string;
   mass: string;
   gender: string;
+  starships: string[];
+}
+
+export interface IStarShip {
+  name: string;
+  model: string;
+  manufacturer: string;
+  starshipClass: string;
 }

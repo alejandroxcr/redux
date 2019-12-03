@@ -24,6 +24,15 @@ export class SystemDialogComponent implements OnInit {
   }
 
   /**
+   * Event triggered by child components
+   * @param close
+   */
+  onClose(close: boolean): void {
+    console.log("DIALOG", `onclose ${close}`);
+    this.close();
+  }
+
+  /**
    * Accept
    */
   accept(): void {

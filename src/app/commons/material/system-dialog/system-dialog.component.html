@@ -9,7 +9,7 @@
         </div>
         <h1 class="text-center mb-5">{{ data.title}}</h1>
         <p *ngIf="data.message"> {{ data.message }} </p>
-        <app-person-form></app-person-form>
+        <app-person-form (onClose)="onClose($event)"></app-person-form>
     </section>
 </ng-template>
     
